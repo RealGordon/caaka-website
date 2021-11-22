@@ -1,0 +1,4 @@
+﻿Flask==1.1.2
+google-cloud-firestore==1.7.0
+gunicorn
+google-cloud-storage==1.28.1

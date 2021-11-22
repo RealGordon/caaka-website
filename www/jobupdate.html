@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=date],
+    input[type=phone],
+    input[type=tel] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=email]:focus,
+    input[type=date]:focus,
+    input[type=phone]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* Set a style for all buttons */
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    button:hover {
+      opacity: 1;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+      padding: 14px 20px;
+      background-color: #f44336;
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn,
+    .signupbtn {
+      float: left;
+      width: 50%;
+    }
+
+    /* Add padding to container elements */
+    .container {
+      padding: 16px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+
+      .cancelbtn,
+      .signupbtn {
+        width: 100%;
+      }
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="w3-bar w3-black">
+    <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'SignUp')">Job Input Form</button>
+
+    <a class="w3-bar-item w3-button tablink" href="/">
+      <- Home</a>
+  </div>
+
+
+  <form id="JobUpdate" name="JobUpdate" class="w3-container city" method="post">
+    <div class="w3-container">
+      <h1>CAAK-A | Job input</h1>
+      <p id="message">Please fill in this form to create a job post</p>
+
+      <hr>
+
+
+      <label for="name"><b>Employer Name / Company </b></label>
+      <input type="text" name="name" required>
+      <div class="container w3-margin">
+        <label class="w3-margin">
+          <fieldset>
+            <legend>Gender</legend>
+            <input type="radio" name="sex" value="M"> Male
+        </label>
+        <label class="w3-margin">
+          <input type="radio" name="sex" value="F">Female
+        </label>
+        </label>
+        <label class="w3-margin">
+          <input type="radio" name="sex" value="B">Both
+        </label> </fieldset>
+      </div>
+      <div class="container w3-margin">
+        <fieldset>
+          <legend>Required documents</legend>
+          <label class="w3-margin">
+            <input type="checkbox" name="documents" value="CV">CV
+          </label>
+          <label class="w3-margin">
+            <input type="checkbox" name="documents" value="Certificate">Certificate
+          </label>
+          <label class="w3-margin">
+            <input type="checkbox" name="documents" value="Passport picture">Passport picture
+          </label>
+          <label class="w3-margin">
+            <input type="checkbox" name="otherdoc" value="true" onclick=" writeOther(this)">Other
+          </label>
+          <input type="hidden" name="other" disabled>
+        </fieldset>
+
+      </div>
+      <div class="container">
+        <fieldset>
+          <legend>Choose industry</legend>
+          <input type="checkbox" value="BANKING" name="industries">
+          <label> BANKING</label><br>
+          <input type="checkbox" value="CONSTRUCTION" name="industries">
+          <label> CONSTRUCTION</label><br>
+          <input type="checkbox" value="IT AND TECHNOLOGY" name="industries">
+          <label> IT AND TECHNOLOGY</label><br>
+          <input type="checkbox" value="BUSINESS AND ADMINISTRATION" name="industries"">
+<label > BUSINESS AND ADMINISTRATION</label><br>
+<input type=" checkbox" value="ENGINEERING" name="industries">
+          <label> ENGINEERING</label><br>
+          <input type="checkbox" value="DOMESTIC SERVICES" name="industries">
+          <label> DOMESTIC SERVICES</label><br>
+          <input type="checkbox" value="MANUFACTURING" name="industries">
+          <label> MANUFACTURING</label><br>
+          <input type="checkbox" value="other" name="otherindustry" onclick="writeOther(this)">
+          <label> other</label><br>
+          <input type="hidden" name="other">
+        </fieldset>
+      </div>
+      <label for="deadline"><b>Deadline</b></label>
+      <input id="date" type="date" name="deadline" required>
+      <label for="phone"><b>Contact details</b></label>
+      <input type="tel" name="contact" placeholder="eg. 0541554578">
+      <label for="name"><b>Position</b></label>
+      <input type="text" name="school" required>
+      <div class="w3-container">
+        <p> <label for="description"><b>Job description</b></label> </p>
+        <textarea name="description" class="w3-input"></textarea>
+      </div>
+      <div class="w3-container">
+        <p>
+          <label for="requirements"><b>Applicant Requirements / qualification </b></label>
+        </p>
+        <textarea name="requirements" class="w3-input"></textarea>
+      </div>
+
+      <input type="hidden" name="formtype" value="jobinput">
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Post</button>
+      </div>
+    </div>
+  </form>
+
+</body>
+<script>
+  window.onload = function () {
+    var f = document.JobUpdate;
+    f.onsubmit = function (e) {
+      var msg = f.message;
+      var req = new XMLHttpRequest(); req.open('POST', '/update/job');
+      req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      req.onreadystatechange = function up(e) {
+        if (req.readyState === 4) { msg.textContent = req.responseText; msg.className = "w3-text-green"; $("input,textarea").text("") }
+        else { msg.textContent = "Error: Failed to update Job"; msg.className = "w3-text-red"; }
+      }
+      req.send($("form").serialize());
+      return false;
+    }
+
+
+    f.deadline.min = (new Date()).toISOString().split('T')[0];
+  }
+
+  function writeOther(el) {
+    var other = document.JobUpdate.other
+    if (el.checked == true) {
+      other.type = "text";
+      other.disabled = false; other.placeholder = "write other required document here";
+    } else { other.type = "hidden"; other.value = ""; other.disabled = true; }
+  }
+</script>
+
+</html>

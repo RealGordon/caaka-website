@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CAAKA | Admin</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] ,input[type=email],input[type=date],input[type=phone],input[type=tel]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus ,input[type=email]:focus,input[type=date]:focus,input[type=phone]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+
+.caakaspinner-wrapper {
+ position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color:   #ffc107; /* #0D7E70;     #17C9B3 */
+z-index: 98;
+opacity:0.5;
+}
+
+.caakaloader {
+position: absolute;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+   border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  top: 20%;
+left: 48%;
+z-index: 99;
+  -webkit-animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  position: absolute;
+top: 48%;
+left: 48%;
+  
+  
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+.spinner-wrapper {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ffc107;
+z-index: 999;
+}
+
+
+</style>
+<!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id='spinner' class="spinner-wrapper">
+<div id="internalspinner" class="spinner"></div>
+</div>
+<div class="w3-bar w3-black">
+<a class="w3-bar-item w3-button tablink" href="/?login=admin"> Home </a>
+<a class="w3-bar-item w3-button tablink" href="/logout"> Logout </a>
+</div>
+
+<p id="message"></p>
+<form name="testUpdate" class="w3-container city" method="post" action="/submit/poster" 
+ enctype="multipart/form-data">
+<div style="display: none"; class="caakaspinner-wrapper" id="cvformwrapper">
+<div class="caakaloader" id="formspinner" style="display: none"></div></div>
+ <div id="questionplate" class="w3-container">
+ 
+ <div class="w3-container w3-margin">
+ Select POSTER:
+ <input type="file" name="poster" class="w3-input" required>
+ </div>
+	<div class="questionarea">
+		<p><b>Positions</b></p>
+		<input type="hidden" name="1" class="w3-input">
+		<p class="w3-text-blue">A</p>
+		<input name="positionA" class="w3-input position">
+		
+		<div class="clearfix" id="choicecontrols">
+		<button onclick="addC(event,this,'position');" type="button" class="signupbtn">Add option</button>
+		<button onclick="removeC(event,this,'position');" type="button" class="cancelbtn">remove option</button>
+		</div>
+		
+	</div>
+		<div class="questionarea">
+		<p><b>Info</b></p>
+		<input type="hidden" name="1" class="w3-input">
+		<p class="w3-text-blue">A</p>
+		<textarea name="infoA" class="w3-input info"></textarea>
+		
+		<div class="clearfix" id="choicecontrols">
+		<button onclick="addC(event,this,'info');" type="button" class="signupbtn">Add option</button>
+		<button onclick="removeC(event,this,'info');" type="button" class="cancelbtn">remove option</button>
+		</div>
+		
+		</div>		
+	</div>
+   
+    <div class="clearfix">
+	  <input type="reset" class="w3-margin w3-red w3-btn" value="Cancel" name="rbutton">
+	  <input type="submit" class="w3-margin w3-blue w3-btn" value="Submit">  
+    </div>
+  </div>
+</form>
+
+<script>
+document.testUpdate.onsubmit=function() {
+if (!formspinner) formspinner=new cSpinner('formspinner');
+formspinner.action();
+//renameInput(true);
+var posterdata=new FormData(document.testUpdate);
+posterdata.set('advertpostid',Date.now().toString());
+var x=new XMLHttpRequest();
+x.open('POST',"/admin/submit/poster");
+x.onreadystatechange=function(){
+if (x.readyState==4 && x.status==200){
+respf(x.responseText);
+
+}}
+x.onerror=uploaderror;
+x.send(posterdata);
+formspinner.spinnerChecker(15000,x);
+
+function uploaderror(){
+//renameInput(false);
+formspinner.action();
+$("#message").text('Error occurred try again')[0].className='w3-text-red';}
+function respf(r,s){
+formspinner.action();
+$("#message").text(r)[0].className='w3-text-green';
+document.testUpdate.rbutton.click();
+
+};
+return false;}
+
+var formspinner;
+
+function renameInput(status){
+var plist=document.getElementsByClassName("w3-input position");
+var ilist=document.getElementsByClassName("w3-input info");
+var i=0;
+for (p in plist) {
+if (!(plist.hasOwnProperty(p))) {continue;}
+p.name= status ? 'positions' : 'position'+ String.fromCharCode(75+(i++));
+}
+i=0;
+for (p in ilist){ 
+if (!(ilist.hasOwnProperty(p))) {continue;}
+p.name= status ? 'info' : 'info'+ String.fromCharCode(75+(i++))}
+}
+
+function addC(e,th,status) {var c,qn,t,p,el,pr,s,parN;
+var d=document;
+el=th||e.target;parN=el.parentNode.parentNode;qn=parN.children[1];
+var container="textarea";
+if (status==="position") container="input";
+t=d.createElement(container);t.placeholder='add '+status+' here';
+t.className="w3-input "+status;
+p=d.createElement("p");
+pr=el.parentNode.previousElementSibling;
+var prname=pr.name;
+c=prname.charCodeAt(prname.length-1);
+if (c==75) return;
+s=String.fromCharCode(c+1);
+p.className="w3-text-blue";
+t.name=status+s
+p.textContent=s;
+parN.insertBefore(p,el.parentNode);
+parN.insertBefore(t,el.parentNode);
+}
+
+function removeC(e,th,status) {
+el=th||e.target;
+var l=document.getElementsByClassName(status);
+if (l.length!==1){
+el.parentNode.parentNode.removeChild(l[l.length-1].previousElementSibling);
+el.parentNode.parentNode.removeChild(l[l.length-1]);}
+}
+
+function spinnerAction() {
+//show or hide spinner
+var loader=document.getElementById(this.spinner_id),change;
+if (loader.style.display==="none") {change="block"; this.status=true;}
+else {change="none"; this.status=false;}
+document.getElementById(loader.parentNode.id).style.display = change;
+ loader.style.display = change;
+}
+function cSpinner(spinner_id,x) {
+this.spinner_id=spinner_id;
+this.status=true;this.x;this.attempt=1;
+}
+function spinnerChecker(time,x){
+this.x= x || null;
+var spinner=this;
+function wrapper() {
+if (spinner.status) {
+
+if (this.attempt==1) {this.attempt+=1;
+return this.spinnerChecker(15000);}
+if (this.x) this.x.abort();
+spinner.action();
+if (spinner.spinner_id=="cvformspinnner") message="Error uploading CV, try again";
+else message="error occurred please try again";
+alert(message)}
+}
+setTimeout(wrapper,time);
+}
+cSpinner.prototype.action=spinnerAction;
+cSpinner.prototype.spinnerChecker=spinnerChecker;
+
+function hidePreloader() {
+var preloaderFadeOutTime = 500;
+var preloader = $('.spinner-wrapper');
+preloader.fadeOut(preloaderFadeOutTime);
+}
+$(document).ready(hidePreloader);
+</script>
+
+</body>
+</html>

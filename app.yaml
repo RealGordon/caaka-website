@@ -1,0 +1,20 @@
+﻿runtime : python37
+entrypoint : gunicorn "caakr:create_app()"
+handlers:
+  - url: /
+    static_files: www/index.html
+    upload: www/index.html
+    secure: always
+  - url: /static
+    static_dir: www
+    secure: always
+  - url: /favicon.ico
+    static_files: www/favicon.ico
+    upload: www/favicon.ico
+    secure: always
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+    
+    

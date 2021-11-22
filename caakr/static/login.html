@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html><head><title>log In | Sign Up</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] ,input[type=email],input[type=date],input[type=phone],input[type=tel]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus ,input[type=email]:focus,input[type=date]:focus,input[type=phone]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+</style>
+<!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script> -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="w3-bar w3-black">
+  <button class="w3-bar-item w3-button tablink">Login</button>
+  <!-- <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'SignUp')">Sign Up</button> -->
+  <a class="w3-bar-item w3-button tablink" href="/">Home</a>
+</div>
+<div class="w3-container">
+<form id="LogIn" action="/login/user" name="login" method="post" class="w3-container city">
+<div style="display: none"; class="caakaspinner-wrapper" id="cvformwrapper">
+<div class="caakaloader" id="formspinner" style="display: none"></div></div>
+
+ <div class="w3-container">
+    <h1>CAAK-A consultancy </h1>
+	<p >
+	Log in
+    </p>
+	<p id='message1'></p><hr>
+	<div class="container"><label style="margin:10px;">
+      <input type="radio" name="meth" value="e" > Email
+    </label >
+		<label style="margin:10px;">
+      <input type="radio" name="meth" value="p"> Phone
+    </label>
+  </div>
+    <label for="name"><b>Email/phone</b></label>
+    <input type="text" maxlength="35" placeholder="Email or phone number" name="email" required>
+
+    <label for="pwd"><b>Password</b></label>
+    <input type="password" maxlength="35" placeholder="Enter Password" name="pwd" required>
+        
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" name="remember"> Remember me
+    </label>
+  </div>
+<input type="hidden" name="formtype" value="login">
+  <div class="w3-bar w3-padding-32" style="background-color:#f1f1f1">
+    <button type="button" class="w3-button w3-bar-item w3-red">Cancel</button>
+    <a href="#" onclick="alert('Contact Site Administrator!')" class="w3-button w3-bar-item">Forgot password?</a>
+  </div>
+</form></div>
+
+<form name="signup" action="login/user" id="SignUp" class="w3-container city" method="post" style="display:none;">
+  <div class="w3-container">
+    <h1>Sign Up</h1>
+    <p id="message2">Please fill in this form to create an account.</p>
+    <hr>
+	
+	
+	<label for="name"><b>Name</b></label>
+    <input type="text" placeholder="eg. Jane Mensah" name="name" maxlength="40" required>
+	<label>
+	<div class="container w3-margin">
+      <input type="radio" name="sex" value="M"> Male
+    </label>
+		<label>
+      <input type="radio" name="sex" value="F">Female
+    </label>
+	</div>
+	<label for="birthdate"><b>Birthday</b></label>
+    <input type="date" name="birthdate" max="2010-01-01" required>
+	<label for="phone"><b>Mobile Number</b></label>
+    <input type="tel" name="phone" placeholder="eg. 0541554578" maxlength="15">
+	<label for="name"><b>School</b></label>
+    <input type="text" placeholder="eg. Secondary School or Tertiary institution" name="school" maxlength="25" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="email" maxlength="35" placeholder="Enter Email" name="email" required>
+
+    <label for="pwd"><b>Password</b></label>
+    <input id="password" type="password" placeholder="Enter Password" name="pwd" required>
+
+    <label for="pwd-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="pwdrepeat" required>
+    <input type="hidden" name="formtype" value="signup">
+
+  
+    <label>
+      <input type="checkbox" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+    
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Conditions</a>.</p>
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </div>
+</form>
+
+</body>
+<script>
+
+document.forms.LogIn.onsubmit=function(e){
+var msg=$('#message1');
+var req=new XMLHttpRequest();req.open('POST','/login/user');
+//req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+req.timeout=12000;
+if (!formspinner) formspinner=cSpinner('formspinner'); 
+formspinner.action();
+formspinner.spinnerChecker(15000);
+req.onreadystatechange=function(e){
+if (req.readyState===4 && req.status==200) { 
+if (req.responseText==="success") {
+formspinner.action();
+window.location="/";}
+else {msg.text("Error: Failed to Login, "+req.responseText).class("w3-text-red");}
+}}
+req.send($( this ).serialize());return false;
+}
+
+
+function spinnerAction() {
+//show or hide spinner
+var loader=document.getElementById(this.spinner_id),change;
+if (loader.style.display==="none") {change="block"; this.status=true;}
+else {change="none"; this.status=false;}
+document.getElementById(loader.parentNode.id).style.display = change;
+ loader.style.display = change;
+}
+function cSpinner(spinner_id) {
+this.spinner_id=spinner_id;
+this.status=true; this.id=Date.now();
+}
+function spinnerChecker(time){
+var spinner=this;
+function wrapper() {if (spinner.status) {spinner.action();
+if (spinner.spinner_id=="cvformspinnner") message="Error uploading CV, try again";
+else message="error occurred please try again";
+alert(message)}
+}
+setTimeout(wrapper,time);
+}
+cSpinner.prototype.action=spinnerAction;
+cSpinner.prototype.spinnerChecker=spinnerChecker;
+var formspinner;
+</script>
+</html>

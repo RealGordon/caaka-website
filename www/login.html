@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>log In | Sign Up</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=date],
+    input[type=phone],
+    input[type=tel] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=email]:focus,
+    input[type=date]:focus,
+    input[type=phone]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* Set a style for all buttons */
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    button:hover {
+      opacity: 1;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+      padding: 14px 20px;
+      background-color: #f44336;
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn,
+    .signupbtn {
+      float: left;
+      width: 50%;
+    }
+
+    /* Add padding to container elements */
+    .container {
+      padding: 16px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+
+      .cancelbtn,
+      .signupbtn {
+        width: 100%;
+      }
+    }
+
+    .caakaspinner-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ffc107;
+      /* #0D7E70;     #17C9B3 */
+      z-index: 98;
+      opacity: 0.5;
+    }
+
+    .caakaloader {
+      position: absolute;
+      border: 16px solid #f3f3f3;
+      /* Light grey */
+      border-top: 16px solid #3498db;
+      /* Blue */
+      border-right: 16px solid green;
+      border-bottom: 16px solid red;
+      border-left: 16px solid pink;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      top: 20%;
+      left: 48%;
+      z-index: 99;
+      -webkit-animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="w3-bar w3-black">
+    <button class="w3-bar-item w3-button tablink">Login</button>
+    <!-- <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'SignUp')">Sign Up</button> -->
+    <a class="w3-bar-item w3-button tablink" href="/">Home</a>
+  </div>
+  <div class="w3-container">
+    <form id="LogIn" action="/login/user" name="login" method="post" class="w3-container city">
+      <div style="display: none" ; class="caakaspinner-wrapper" id="cvformwrapper">
+        <div class="caakaloader" id="formspinner" style="display: none"></div>
+      </div>
+      <input type="hidden" name="formtype" value="login">
+      <div class="w3-container">
+        <h1>CAAK-A consultancy </h1>
+        <p>
+          Log in
+        </p>
+        <p id='message1'></p>
+        <hr>
+        <div class="container"><label style="margin:10px;">
+            <input type="radio" name="meth" value="e"> Email
+          </label>
+          <label style="margin:10px;">
+            <input type="radio" name="meth" value="p"> Phone
+          </label>
+        </div>
+        <label for="name"><b>Email/phone</b></label>
+        <input type="text" maxlength="35" placeholder="Email or phone number" name="email" required>
+
+        <label for="pwd"><b>Password</b></label>
+        <input type="password" maxlength="35" placeholder="Enter Password" name="pwd" required>
+
+        <button type="submit">Login</button>
+        <label>
+          <input type="checkbox" name="remember"> Remember me
+        </label>
+      </div>
+
+      <div class="w3-bar w3-padding-32" style="background-color:#f1f1f1">
+        <button type="button" class="w3-button w3-bar-item w3-red">Cancel</button>
+        <a href="#" onclick="alert('Contact Site Administrator!')" class="w3-button w3-bar-item">Forgot password?</a>
+      </div>
+    </form>
+  </div>
+
+  <form name="signup" action="login/user" id="SignUp" class="w3-container city" method="post" style="display:none;">
+    <div class="w3-container">
+      <h1>Sign Up</h1>
+      <p id="message2">Please fill in this form to create an account.</p>
+      <hr>
+
+
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="eg. Jane Mensah" name="name" maxlength="40" required>
+      <label>
+        <div class="container w3-margin">
+          <input type="radio" name="sex" value="M"> Male
+      </label>
+      <label>
+        <input type="radio" name="sex" value="F">Female
+      </label>
+    </div>
+    <label for="birthdate"><b>Birthday</b></label>
+    <input type="date" name="birthdate" max="2010-01-01" required>
+    <label for="phone"><b>Mobile Number</b></label>
+    <input type="tel" name="phone" placeholder="eg. 0541554578" maxlength="15">
+    <label for="name"><b>School</b></label>
+    <input type="text" placeholder="eg. Secondary School or Tertiary institution" name="school" maxlength="25" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="email" maxlength="35" placeholder="Enter Email" name="email" required>
+
+    <label for="pwd"><b>Password</b></label>
+    <input id="password" type="password" placeholder="Enter Password" name="pwd" required>
+
+    <label for="pwd-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="pwdrepeat" required>
+    <input type="hidden" name="formtype" value="signup">
+
+
+    <label>
+      <input type="checkbox" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Conditions</a>.</p>
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+    </div>
+  </form>
+  <script src="/static/js/loginjs.js"></script>
+</body>
+
+</html>

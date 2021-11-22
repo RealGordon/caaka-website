@@ -1,0 +1,25 @@
+﻿
+{% if g.data is defined %}
+	{% for job in g.data %}
+<div class="w3-container w3-padding-large w3-section w3-light-grey">
+  <h1 class="w3-jumbo">JOBS</h1>
+
+  <p class="w3-xlarge"> {{job.__dict__.get('industries','')|join(', ')}}
+  </p>
+   <div class="w3-card-4" style="width:95%">
+    <header class="w3-container w3-light-grey">
+      <h3>{{job.__dict__.get('position','')}}</h3>
+    </header>
+    <div class="w3-container">
+      <p>{{g.deadline.fromisoformat(job.__dict__.get('regdate',''))}}</p>
+      <hr>
+      <img src="https://www.w3schools.com/w3css/img_avatar3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+      <p>{{job.__dict__.get('description','')|truncate(70)}}</p><br>
+    </div>
+    <a class="w3-button w3-block w3-dark-grey" href="/apply/job/{{job.__dict__.get('id','')}}">+ APPLY</a>
+  </div>
+  </div>{% endfor %}
+{% endif %}
+
+
+

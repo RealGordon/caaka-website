@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] ,input[type=email],input[type=date],input[type=phone],input[type=tel]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus ,input[type=email]:focus,input[type=date]:focus,input[type=phone]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<div class="w3-bar w3-black">
+  <a class="w3-bar-item w3-button tablink" href="/">HOME</a>
+  <a class="w3-bar-item w3-button tablink" href="/">Back</a>
+  <a class="w3-bar-item w3-button tablink" href="/">My Account</a>
+</div>
+
+ <div class="w3-container">
+   <h1>CAAK-A consultancy </h1>
+	<p>
+	Upload CV  
+	
+    </p><hr>
+	<p class="w3-text-red">
+	{{job.get('error','')}} 
+    </p>
+<form id="CV" enctype="multipart/form-data" method="POST">
+<div class="w3-container">
+{% for document in job.get('documents') %}
+  <label for="{{document}}">{{document}}</label>
+  <input type="file" name="{{'_'.join(document.split())}}" class="w3-input"><br>
+  {% endfor %}<br>
+  <input type="submit" class="w3-btn w3-blue">
+  </div>
+</form>
+    <div  class="w3-margin">
+
+    <label for="name"><b>Employer Name / Company </b></label>
+    <div  class="w3-container">{{job.get('employer','')}}</div>
+	<label for="birthdate"><b>Deadline</b></label>
+    <div  class="w3-cotainer">{{job.get('deadline','')}}</div>
+	
+	<label for="name"><b>Position</b></label>
+    <div  class="w3-container">{{job.get('position','')}}</div></div>
+<div class="w3-container">
+ <p> <b>Job description</b>  </p>
+<div name="description" class="w3-margin">{{job.get('description','')}}
+</div></div>
+    <div class="w3-container"><p>
+<b>Applicant Requirements / qualification </b></p>
+<div name="requirements" class="w3-margin">{{job.get('requirements','')}}</div></div>
+  </div>
+
+
+
+</body>
+</html>
